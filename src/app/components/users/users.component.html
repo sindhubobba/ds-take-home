@@ -1,5 +1,16 @@
-<ul>
-    <li *ngFor="let user of users$ | async">
-        {{user.city}}
-    </li>
-</ul>
+<div>
+    <ul>
+        <li *ngFor="let user of registeredUsers$ | async">
+            {{user.city}}
+        </li>
+    </ul>
+</div>
+
+<div>
+    <ul>
+        <li *ngFor="let user of unregisteredUsers$ | async">
+            {{user.id}}
+        </li>
+    </ul>
+</div>
+

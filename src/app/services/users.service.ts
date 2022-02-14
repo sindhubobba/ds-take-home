@@ -1,19 +1,23 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import {registeredUsers} from '../mockAPIs/mockRegisteredUsers';
+import { catchError, combineLatest, forkJoin, Observable, of } from 'rxjs';
+import { registeredUsers } from '../mockAPIs/mockRegisteredUsers';
+import { unregisteredUsers } from '../mockAPIs/mockUnregisteredUsers';
+import { projectMemberShips } from '../mockAPIs/mockProjectMembership';
+import {environment} from '../../environments/environment'
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-
+  
   constructor(private httpClient: HttpClient) { }
 
   getUsers(): Observable<any>{
-    return new Observable(subscriber => {
-      subscriber.next(registeredUsers)
-    })
-    //return this.httpClient.get('https://5c3ce12c29429300143fe570.mockapi.io/api/registeredusers');
+    const regisUsers = this.httpClient.get(environment.registeredUserURL);
+    const unregisUsers = this.httpClient.get(environment.unregisteredURL);
+    const projectMemberships = this.httpClient.get(environment.projectMembershipURL);
+    return forkJoin([regisUsers,unregisUsers,projectMemberships])
+    .pipe(catchError(err => of([])));
   }
 }
