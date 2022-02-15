@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { projectMemberShips } from 'src/app/mockAPIs/mockProjectMembership';
 import { UserService } from 'src/app/services/users.service';
 import { UserStore } from 'src/app/store/user-store';
@@ -10,6 +10,11 @@ import { UserStore } from 'src/app/store/user-store';
   providers: [UserStore]
 })
 export class UsersComponent implements OnInit {
+  regDisplayedColumns: string[] = ['id', 'firstName','lastName','company','organizationType','phone','city', 'projectIds'];
+  regHeaders = ['Id','First name','Last name','Company','Organization type','Phone','City','ProjectId\'s']
+  unregDisplayedColumns: string[] = ['id', 'emailAddress','projectIds'];
+  unregHeaders = ['Id', 'Emailaddress','ProjectId\'s'];
+  isMobileView = false;
 
   constructor(private userService: UserService, private userStore: UserStore) { }
 
@@ -19,6 +24,7 @@ export class UsersComponent implements OnInit {
       this.userStore.addUnregisteredUser(unregUsers);
       this.userStore.addProjectMemberShips(memberships)
     })
+    this.isMobileView =  this.isSmall();
   }
 
   get registeredUsers$() {
@@ -27,5 +33,14 @@ export class UsersComponent implements OnInit {
 
   get unregisteredUsers$() {
     return this.userStore.unregisteredUsers$;
+  }
+
+  @HostListener("window:resize", [])
+  onResize(){
+    this.isMobileView = this.isSmall();
+  }
+
+  isSmall(){
+    return window.innerWidth < 768 ? true : false;
   }
 }

@@ -1,16 +1,46 @@
-<div>
-    <ul>
-        <li *ngFor="let user of registeredUsers$ | async">
-            {{user.city}}
-        </li>
-    </ul>
-</div>
+<mat-tab-group>
+    <mat-tab label="Registered-users">
+        <ds-data-table *ngIf="!isMobileView; else accordion" [datasource]="registeredUsers$ | async"
+            [columns]="regDisplayedColumns" [headers]="regHeaders"></ds-data-table>
+        <ng-template #accordion>
+            <mat-accordion multi>
+                <ng-container *ngFor="let user of registeredUsers$ | async">
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                {{user.firstName}} {{user.lastName}}
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <p>Company: {{user.company}}</p>
+                        <p>Organization: {{user.organizationType}}</p>
+                        <p>Phone: {{user.phone}}</p>
+                        <p>City: {{user.city}}</p>
+                        <p>Project Id's: {{user.projectIds ? user.projectIds : '-'}}</p>
+                    </mat-expansion-panel>
+                </ng-container>
+            </mat-accordion>
+        </ng-template>
+    </mat-tab>
 
-<div>
-    <ul>
-        <li *ngFor="let user of unregisteredUsers$ | async">
-            {{user.id}}
-        </li>
-    </ul>
-</div>
+    <mat-tab label="Unregistered-users">
+        <ds-data-table *ngIf="!isMobileView; else accordion1" [datasource]="unregisteredUsers$ | async"
+            [columns]="unregDisplayedColumns" [headers]="unregHeaders"></ds-data-table>
 
+        <ng-template #accordion1>
+            <mat-accordion multi>
+                <ng-container *ngFor="let user of unregisteredUsers$ | async">
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                {{user.id}}
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <p>Emailaddress: {{user.emailAddress}}</p>
+                        <p>Project Id's: {{user.projectIds ? user.projectIds : '-'}}</p>
+                    </mat-expansion-panel>
+                </ng-container>
+            </mat-accordion>
+        </ng-template>
+    </mat-tab>
+
+</mat-tab-group>
