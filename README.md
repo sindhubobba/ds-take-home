@@ -1,8 +1,14 @@
 # DataSite
 
+Steps to run app locally
+
+## Install packages
+
+Run 'npm install'
+
 ## Development server
 
-Run 'npm run start' for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run 'npm run start' for a dev server. App will open at `http://localhost:4200/`.
 
 ## Build
 
@@ -10,6 +16,6 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 ## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `npm run test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
 
