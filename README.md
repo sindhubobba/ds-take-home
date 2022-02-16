@@ -1,6 +1,10 @@
 
 ## Steps to run app locally
 
+###### Node => 16.14.0
+###### npm => 8.3.1
+###### angular => 13.2.3
+
 ### Clone repo 
 `git@github.com:sindhubobba/ds-take-home.git`
 `cd ds-take-home`
