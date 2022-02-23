@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { RegisteredUser, UnregisteredUser } from 'src/app/models/users';
 
 @Component({
   selector: 'ds-data-table',
@@ -7,11 +8,12 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class DataTableComponent implements OnInit {
   @Input() datasource: any;
-  @Input() columns: any;
-  @Input() headers: any;
+  @Input() columns: Array<string> = [];
+  @Input() headers: Array<string> = [];
 
   constructor() { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
 }

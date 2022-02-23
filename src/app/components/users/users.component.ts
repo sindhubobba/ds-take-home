@@ -10,10 +10,10 @@ import { UserStore } from 'src/app/store/user-store';
   providers: [UserStore]
 })
 export class UsersComponent implements OnInit {
-  regDisplayedColumns: string[] = ['id', 'firstName','lastName','company','organizationType','phone','city', 'projectIds'];
-  regHeaders = ['Id','First name','Last name','Company','Organization type','Phone','City','ProjectId\'s']
-  unregDisplayedColumns: string[] = ['id', 'emailAddress','projectIds'];
-  unregHeaders = ['Id', 'Emailaddress','ProjectId\'s'];
+  regDisplayedColumns: string[] = ['firstName','lastName','company','organizationType','phone','city', 'projectIds'];
+  regHeaders = ['First name','Last name','Company','Organization type','Phone','City','ProjectId\'s']
+  unregDisplayedColumns: string[] = ['emailAddress','projectIds'];
+  unregHeaders = ['Emailaddress','ProjectId\'s'];
   isMobileView = false;
 
   constructor(private userService: UserService, private userStore: UserStore) { }
