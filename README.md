@@ -1,14 +1,23 @@
-# DataSite
 
-Steps to run app locally
+## Steps to run app locally
 
-## Install packages
+###### Node => 16.14.0
+###### npm => 8.3.1
+###### angular => 13.2.3
 
-Run 'npm install'
+### Clone repo 
+`git@github.com:sindhubobba/ds-take-home.git`
+`cd ds-take-home`
 
-## Development server
+### Install packages
+`npm install`
 
-Run 'npm run start' for a dev server. App will open at `http://localhost:4200/`.
+### Development server
+
+`npm run start` 
+
+### Navigate to
+App will open at `http://localhost:4200/`
 
 ## Build
 
